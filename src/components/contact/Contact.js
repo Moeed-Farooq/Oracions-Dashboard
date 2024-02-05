@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { getFirestore, collection, getDocs, updateDoc, doc, uploadBytes, ref, getDownloadURL } from 'firebase/firestore';
 import app from '../firebase'; // Adjust the path based on your project structure
 import { getStorage, ref as storageRef, uploadBytes as uploadStorageBytes, getDownloadURL as getStorageDownloadURL } from 'firebase/storage'; // Update these imports
+import Message from './Message';
 
 const Contact = () => {
   const firestore = getFirestore(app);
@@ -142,6 +143,7 @@ const Contact = () => {
   </div>
 </div>
    </div>
+   <Message/>
    </>
   );
 };
