@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { getFirestore, collection, getDocs, deleteDoc, updateDoc, doc, getDoc } from 'firebase/firestore';
 import app from '../firebase';
 import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { Link } from 'react-router-dom';
 
 const Service = () => {
   const firestore = getFirestore(app);
@@ -145,15 +146,15 @@ const Service = () => {
   return (
     <>
       <div id='services'>
-      <hr className='mt-5' />
+     
       <h1 className='text-center'>ServicePage Content</h1>
-      <div className='d-flex justify-content-between'>
-        <div className='section1 mt-5 w-100'>
-          <h2>Service List</h2>
-          <ul>
+      <div className='row  '>
+        <div className='col-md-2 mt-5 text-center  '>
+          <h4>Service List</h4>
+          <ul >
             {projects.map((project) => (
               <li key={project.id} className='projectList'>
-                <button onClick={() => handleProjectSelect(project.id)}>
+                <button style={{width:"100%"}} onClick={() => handleProjectSelect(project.id)}>
                   {project.serviceTitle}
                 </button>
               </li>
@@ -161,60 +162,86 @@ const Service = () => {
           </ul>
         </div>
 
-        <div className="section2 w-100">
+        <div className="col-md-10  ">
            {/* Display editable serviceDescription data */}
-           <div className='mt-5 '>
-            <h2 className='serviceDescription'>ServicePage Description</h2>
+           <div className='row mt-5 '>
+            <div className="col-md-3 ">
+            <h4 className='serviceDescription'>ServicePage Description</h4>
+            </div>
+            <div className="col-md-6">
+              
             <input
               type='text'
-              style={{width:"60%"}}
               value={editableServiceDescription}
               onChange={(e) => setEditableServiceDescription(e.target.value)}
             /> <br />
-            <button className='update' style={{width:"60%"}} onClick={handleUpdateServiceDescription}>Update Description</button>
+            <button className='update w-100'  onClick={handleUpdateServiceDescription}>Update Description</button>
+            </div>
+
           </div>
           {selectedProject && (
-            <div className='mt-5'>
-              <h2>ServiceTitle</h2>
-              <input
+            <div className='row mt-3'>
+              <div className="col-md-3 "><h4>ServiceTitle</h4></div>
+              <div className="col-md-6 "><input
                 type='text'
-                style={{ width: '60%' }}
                 value={selectedProject.serviceTitle}
                 onChange={(e) => setSelectedProject((prev) => ({ ...prev, serviceTitle: e.target.value }))}
-              />
-              <div className='mt-5'>
-                <h2>Description</h2>
+              /></div>
+
+              
+              
+              <div className='row mt-3'>
+                <div className="col-md-3 "><h4>Description</h4></div>
+                <div className="col-md-6 ms-2">  
                 <textarea
-                  style={{ width: '60%' }}
+
                   value={selectedProject.description}
                   onChange={(e) => setSelectedProject((prev) => ({ ...prev, description: e.target.value }))}
                 />
+                </div>
+
+              
               </div>
-              <div className='mt-2'>
-                <h2>Choose Image</h2>
+              <div className='row mt-2'>
+                <div className="col-md-3  ">
+                <h4>Choose Image</h4>
+                </div>
+                <div className="col-md-6 ps-2">
                 <img src={selectedProject.image} alt='Selected' width={100} height={100} /> <br />
                 <input
-                  style={{ width: '60%' }}
                   type='file'
                   onChange={handleImageChange}
                 />
-              </div>
-              <div>
-                <button className='update' style={{ width: '60%' }} onClick={handleUpdate}>
+                </div>
+                <div className="col-md-3">
+                <div className='text-start '>
+                <button className='update w-100' onClick={handleUpdate}>
                   Update
                 </button>
               </div>
-              <div>
-                <button className='delete' style={{ width: '60%' }} onClick={handleDelete}>
+              <div className='text-start'>
+                <button className='delete w-100'  onClick={handleDelete}>
                   Delete
                 </button>
               </div>
+              <div className='text-start '>
+               <Link to="CreateService"><button className='update w-100' >
+                  create a new service
+                </button>
+                </Link> 
+              </div>
+                </div>
+
+                
+              </div>
+             
             </div>
           )}
 
          
         </div>
       </div>
+     
       </div>
     </>
   );

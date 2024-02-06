@@ -7,6 +7,9 @@
   text-decoration: none;
   color: white;
 }
+.sidebar{
+  margin-top: 200px;
+}
 
 .logo{
   width: 100px;
@@ -49,7 +52,7 @@
 }
 
 
-h2{
+h4{
   color: #41B2A8;
   margin-bottom: 20px;
 }
@@ -57,18 +60,32 @@ h1{
   color: #319a91;
 }
 input{
-  width: 30%;
+  width: 100%;
   text-align: center;
-  padding: 20px;
+  padding: 10px;
   border-radius: 10px;
   border: 1px solid #41B2A8;
 
 }
 
 textarea{
-  width: 30%;
+  width: 100%;
   text-align: center;
-  padding: 20px;
+  padding: 10px;
   border-radius: 10px;
   border: 1px solid #41B2A8;
+}
+
+/* css for header */
+.header{
+  border-radius: 0px 0px 0px 40px;
+  background-color: white;
+}
+
+/* mian css */
+.main{
+  background-color: #F7F7F7;
+  height: 100%;
+  width: 100%;
+  border-radius: 20px;
 }

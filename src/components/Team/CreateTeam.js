@@ -126,36 +126,38 @@ const CreateTeam = () => {
   // ... (rest of the code)
 
   return (
-    <div id='projects'>
+    <div id='projects' className='text-center'>
 
       <div className='mt-5'>
-        <h2>Create New Member</h2>
+        <h1>Create New Member</h1>
         <div>
           <input
+          className='mt-5 w-50'
             type="text"
             placeholder="Name"
             value={newProject.name}
             onChange={(e) => setNewProject((prev) => ({ ...prev, name: e.target.value }))}
           />
         </div>
-        <div className='mt-5'>
-          <textarea
+        <div className='mt-2'>
+          <textarea className='w-50'
             placeholder="Description"
             value={newProject.description}
             onChange={(e) => setNewProject((prev) => ({ ...prev, description: e.target.value }))}
           />
         </div>
-        <div className='mt-5'>
-          <textarea
+        <div className='mt-2'>
+          <textarea className='w-50'
             placeholder="Role"
             value={newProject.role}
             onChange={(e) => setNewProject((prev) => ({ ...prev, role: e.target.value }))}
           />
         </div>
         <div className='mt-2'>
-          <h2>Choose Image</h2>
+          <h4>Choose Image</h4>
           <img src={newProject.image} alt="Selected" width={100} height={100} /> <br />
           <input
+          className='w-25'
             type="file"
             onChange={handleImageChange}
           />

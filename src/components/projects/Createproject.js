@@ -132,40 +132,40 @@ const CreateProjects = () => {
     <div id='projects' className='text-center'>
 
       <div className='mt-5'>
-        <h2>Create New Project</h2>
-        <div>
-          <input
+        <h1>Create New Project</h1>
+        <div className='mt-5'>
+          <input className='w-50'
             type="text"
             placeholder="Title"
             value={newProject.title}
             onChange={(e) => setNewProject((prev) => ({ ...prev, title: e.target.value }))}
           />
         </div>
-        <div className='mt-5'>
-          <textarea
+        <div className='mt-2'>
+          <textarea className='w-50'
             placeholder="Description"
             value={newProject.Description}
             onChange={(e) => setNewProject((prev) => ({ ...prev, Description: e.target.value }))}
           />
         </div>
-        <div className='mt-5'>
-          <textarea
+        <div className='mt-2'>
+          <textarea className='w-50'
             placeholder="Role"
             value={newProject.role}
             onChange={(e) => setNewProject((prev) => ({ ...prev, role: e.target.value }))}
           />
         </div>
-        <div className='mt-5'>
-          <textarea
+        <div className='mt-2'>
+          <textarea className='w-50'
             placeholder="Color Combination"
             value={newProject.cardColor}
             onChange={(e) => setNewProject((prev) => ({ ...prev, cardColor: e.target.value }))}
           />
         </div>
         <div className='mt-2'>
-          <h2>Choose Logo</h2>
+          <h4>Choose image</h4>
           <img src={newProject.image} alt="Selected" width={100} height={100} /> <br />
-          <input
+          <input className='w-25'
             type="file"
             onChange={handleImageChange}
           />

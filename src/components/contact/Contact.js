@@ -4,6 +4,7 @@ import { getFirestore, collection, getDocs, updateDoc, doc, uploadBytes, ref, ge
 import app from '../firebase'; // Adjust the path based on your project structure
 import { getStorage, ref as storageRef, uploadBytes as uploadStorageBytes, getDownloadURL as getStorageDownloadURL } from 'firebase/storage'; // Update these imports
 import Message from './Message';
+import { Link } from 'react-router-dom';
 
 const Contact = () => {
   const firestore = getFirestore(app);
@@ -75,26 +76,25 @@ const Contact = () => {
   return (
    <>
    <div id='contact'>
-   <hr className='mt-5' />
 
-<div id='home' className='text-center mb-5'>
-  <h1 className='text-center'>ContactPage Content</h1>
-  <div className='mt-5'>
-    <h2>Contact Us Description</h2>
+<div id='home' className='row text-center mb-5'>
+  <h1 className='text-center '>ContactPage Content</h1>
+  <div className='col-md-4 mt-3'>
+    <h4  className='text-start' >Contact Us Description</h4>
     <input type="text" 
      value={contactUsDescription} onChange={(e) => setcontactUsDescription(e.target.value)} />
   </div>
 
-<div className='mt-5 '>
-    <h2>Address</h2>
+<div className=' col-md-4 mt-3 '>
+    <h4  className='text-start'>Address</h4>
     <input
       type="text"
       value={address}
       onChange={(e) => setAddress(e.target.value)}
     />
   </div>
-  <div className='mt-5'>
-    <h2>Address Link</h2>
+  <div className='col-md-4 mt-3'>
+    <h4  className='text-start'>Address Link</h4>
     <input
       type="text"
       value={LocationLink}
@@ -102,48 +102,58 @@ const Contact = () => {
     />
   </div>
 
-<div className='mt-5 '>
-    <h2>Contact Number</h2>
+<div className='mt-3 col-md-4'>
+    <h4  className='text-start'>Contact Number</h4>
     <textarea
       value={ContactNumber}
       onChange={(e) => setContactNumber(e.target.value)}
     />
   </div>
-  <div className='mt-5'>
-    <h2>whatsapp link</h2>
+  <div className='mt-3 col-md-4'>
+    <h4  className='text-start'>whatsapp link</h4>
     <textarea
       value={whatsappLink}
       onChange={(e) => setwhatsappLink(e.target.value)}
     />
   </div>
 
- <div className='mt-5 '>
-    <h2>Email</h2>
+ <div className='mt-3 col-md-4 '>
+    <h4  className='text-start'>Email</h4>
     <textarea
       value={ContactEmail}
       onChange={(e) => setContactEmail(e.target.value)}
     />
   </div>
-  <div className='mt-5'>
-    <h2>Email Link</h2>
+  <div className='mt-3 col-md-4'>
+    <h4  className='text-start'>Email Link</h4>
     <textarea
       value={EmailLink}
       onChange={(e) => setEmailLink(e.target.value)}
     />
   </div>
-  <div className='mt-5'>
-    <h2>Google map link</h2>
+  <div className='mt-3 col-md-4'>
+    <h4  className='text-start'>Google map link</h4>
     <textarea
       value={map}
       onChange={(e) => setMap(e.target.value)}
     />
   </div>
+  <div className="col-md-4 " style={{marginTop:"50px"}}>
   <div>
-    <button className='update' onClick={handleUpdate}>Update</button>
+    <button className='update w-100' onClick={handleUpdate}>Update</button>
   </div>
+  <div>
+
+  <Link to="/Message">
+          <button className='update w-100'>See Messages</button>
+        </Link>
+    
+  </div>
+  </div>
+ 
 </div>
    </div>
-   <Message/>
+   
    </>
   );
 };

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { getFirestore, collection,getDoc, getDocs, deleteDoc, updateDoc, doc, uploadBytes, ref, getDownloadURL } from 'firebase/firestore';
 import app from '../firebase';
 import { getStorage, ref as storageRef, uploadBytes as uploadStorageBytes, getDownloadURL as getStorageDownloadURL } from 'firebase/storage';
+import { Link } from 'react-router-dom';
 
 const Team = () => {
   const firestore = getFirestore(app);
@@ -144,74 +145,99 @@ const Team = () => {
   return (
     <>
      <div id='team'>
-     <hr className='mt-5' />
       <h1 className='text-center'>Executive Team Page Content</h1>
-      <div id='projects' className='d-flex justify-content-between'>
-        <div className='section1 mt-5 w-100'>
-          <h2>Members List</h2>
+      <div id='projects' className='row d-flex justify-content-between'>
+        <div className='col-md-2 mt-5 '>
+          <h4>Members List</h4>
           <ul>
             {projects.map((project) => (
               <li key={project.id} className='projectList'>
-                <button onClick={() => handleProjectSelect(project.id)}>
+                <button className='w-100' onClick={() => handleProjectSelect(project.id)}>
                   {project.name}
                 </button>
               </li>
             ))}
           </ul>
         </div>
-        <div className="section2 w-100">
+        <div className="col-md-10 ">
           {/* Editable Description Section */}
-          <div className='mt-5'>
-            <h2>Executive Members Description</h2>
+          <div className='row mt-5'>
+            <div className="col-md-3">
+            <h4>ExecutiveMembers Description</h4>
+            </div>
+            <div className="col-md-6">
             <textarea
-            style={{width:"60%"}}
               value={editableDescription}
               onChange={(e) => setEditableDescription(e.target.value)}
             />
-            <div>
-              <button  style={{width:"60%"}} className='update' onClick={handleUpdateDescription}>Update Description</button>
             </div>
+            <div className="col-md-3">
+            <div>
+              <button   className='update w-100' onClick={handleUpdateDescription}>Update Description</button>
+            </div>
+            </div>            
           </div>
           {selectedProject && (
-            <div className='mt-5'>
-              <h2>Name</h2>
-              <input
-               style={{width:"60%"}}
+            <div className='row mt-2'>
+              <div className="col-md-3"><h4>Name</h4></div>
+              <div className="col-md-6">
+                <input
                 type="text"
                 value={selectedProject.name}
                 onChange={(e) => setSelectedProject((prev) => ({ ...prev, name: e.target.value }))}
               />
-              <div className='mt-5'>
-                <h2>Description</h2>
-                <textarea
-                 style={{width:"60%"}}
+              </div>
+
+              
+              
+              <div className='row mt-2'>
+                <div className="col-md-3"><h4>Description</h4></div>
+                <div className="col-md-6"><textarea
                   value={selectedProject.description}
                   onChange={(e) => setSelectedProject((prev) => ({ ...prev, description: e.target.value }))}
-                />
+                /></div>
+
+                
+                
               </div>
-              <div className='mt-5'>
-                <h2>Role</h2>
-                <textarea
-                 style={{width:"60%"}}
+              <div className='row mt-2'>
+                <div className="col-md-3"><h4>Role</h4></div>
+                <div className="col-md-6">
+                  <textarea
                   value={selectedProject.role}
                   onChange={(e) => setSelectedProject((prev) => ({ ...prev, role: e.target.value }))}
                 />
+                </div>
               </div>
-              <div className='mt-2'>
-                <h2>Choose Image</h2>
+              <div className='row mt-2'>
+                <div className="col-md-3">
+                <h4>Choose Image</h4>
+                </div>
+                <div className="col-md-6">
                 <img src={selectedProject.image} alt="Selected" width={100} height={100} /> <br />
                 <input
-                 style={{width:"60%"}}
                   type="file"
                   onChange={handleImageChange}
                 />
+                </div>
+                <div className="col-md-3">
+                <div>
+                <button className='update w-100'   onClick={handleUpdate}>Update</button>
               </div>
               <div>
-                <button className='update'  style={{width:"60%"}} onClick={handleUpdate}>Update</button>
+                <button className='delete w-100'   onClick={handleDelete}>Delete</button>
               </div>
               <div>
-                <button className='delete'  style={{width:"60%"}} onClick={handleDelete}>Delete</button>
+                <Link to="/CreateTeam">
+                <button className='update w-100' >Add new Member</button>
+                </Link>
               </div>
+                </div>
+
+               
+                
+              </div>
+             
             </div>
           )}
 

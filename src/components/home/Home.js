@@ -97,31 +97,52 @@ const Dashboard = () => {
   return (
     <div id='home' className='text-center'>
       <h1>HomePage Content</h1>
-      <div className='mt-5'>
-        <h2>Company Name</h2>
+      <div className='row mt-5 d-flex'>
+        <div className="col-md-3 text-start">
+        <h4>Company Name</h4>
+        </div>
+        <div className="col-md-6">
         <input
           type='text'
           value={companyName}
           onChange={(e) => setCompanyName(e.target.value)}
         />
+        </div>
+
+        
       </div>
-      <div className='mt-5'>
-        <h2>Compnay Description</h2>
+      <div className='row mt-5'>
+        <div className="col-md-3 text-start">
+        <h4>Compnay Description</h4>
+        </div>
+        <div className="col-md-6">
         <textarea
           value={HomeDescription}
           onChange={(e) => setHomeDescription(e.target.value)}
         />
+        </div>
+
+        
       </div>
-      <div className='mt-5'>
-        <h2>Choose Logo</h2>
+      <div className='row mt-5'>
+        <div className="col-md-3 text-start">
+        <h4>Choose Logo</h4>
+        </div>
+        <div className="col-md-6   justify-content-between">
         <img src={logo} alt='Selected' width={100} height={100} /> <br />
-        <input className='mt-2' type='file' onChange={handleImageChange} />
-      </div>
-      <div>
-        <button className='update' onClick={handleUpdate} disabled={loading}>
+        <input className='mt-2 w-50 mt-5'   type='file' onChange={handleImageChange} />
+        </div>
+        <div className="col-md-3">
+        <div className='text-start mt-5'>
+        <button className='update w-100 ' style={{marginTop:"100px"}} onClick={handleUpdate} disabled={loading}>
           {loading ? 'Updating...' : 'Update'}
         </button>
       </div>
+        </div>
+        
+
+      </div>
+      
     </div>
   );
 };

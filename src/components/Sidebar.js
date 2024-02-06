@@ -1,17 +1,17 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Sidebar = () => {
   return (
     <>
-   <div className='sidebar' style={{position:"fixed"}} >
-   <h1 className='text-white'>Oracions</h1>
+   <div className='sidebar mt-5' >
    <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#projects">Portfolio</a></li>
-        <li><a href="#team">Team</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><Link to="/Home">Home</Link></li>
+        <li><Link to="/About">About</Link></li>
+        <li><Link to="/Service">Services</Link></li>
+        <li><Link to="/Projects">Portfolio</Link></li>
+        <li><Link to="/Team">Team</Link></li>
+        <li><Link to="/Contact">Contact</Link></li>
     </ul>
    </div>
       

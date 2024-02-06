@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { getFirestore, collection, getDocs, deleteDoc, updateDoc, doc, uploadBytes, ref, getDownloadURL, getDoc } from 'firebase/firestore';
 import app from '../firebase';
 import { getStorage, ref as storageRef, uploadBytes as uploadStorageBytes, getDownloadURL as getStorageDownloadURL } from 'firebase/storage';
+import { Link } from 'react-router-dom';
 
 const Projects = () => {
   const firestore = getFirestore(app);
@@ -159,83 +160,116 @@ const Projects = () => {
   return (
     <>
       <div id='projects'>
-      <hr className='mt-5' />
       <h1 className='text-center'>ProjectPage Content</h1>
-      <div className='d-flex justify-content-between'>
-        <div className='section1 mt-5 w-100'>
-          <h2>Project List</h2>
+      <div className='row d-flex justify-content-between'>
+        <div className='col-md-2 mt-3'>
+          <h4>Project List</h4>
           <ul>
             {projects.map((project) => (
               <li key={project.id} className='projectList'>
-                <button onClick={() => handleProjectSelect(project.id)}>
+                <button className='w-100' onClick={() => handleProjectSelect(project.id)}>
                   {project.title}
                 </button>
               </li>
             ))}
           </ul>
         </div>
-        <div className="section2 w-100">
+        <div className="col-md-10">
         {descriptionData && (
-            <div className='mt-3'>
-              <h2>Description from Projects Page</h2>
+            <div className='row mt-2'>
+              <div className="col-md-3">
+              <h4>Projects Description</h4>
+              </div>
+              <div className="col-md-6">
               <textarea
-                style={{ width: "60%" }}
                 value={descriptionData.description}
                 onChange={(e) => setDescriptionData((prev) => ({ ...prev, description: e.target.value }))}
               />
-              <div>
-                <button className='update' style={{ width: "60%" }} onClick={handleDescriptionChange}>Update Description</button>
+              
               </div>
+              <div className="col-md-3">
+              <div>
+                <button className='update w-100'  onClick={handleDescriptionChange}>Update Description</button>
+              </div>
+              </div>
+
+              
+              
             </div>
           )}
           {selectedProject && (
-            <div className='mt-5'>
-              <h2>Name</h2>
+            <div className='row'>
+              <div className="col-md-3">
+              <h4>Name</h4>
+              </div>
+              <div className="col-md-6">
               <input
                 type="text"
-                style={{ width: "60%" }}
                 value={selectedProject.title}
                 onChange={(e) => setSelectedProject((prev) => ({ ...prev, title: e.target.value }))}
               />
-              <div className='mt-5'>
-                <h2>Description</h2>
+              </div>
+              
+              <div className='row mt-1'>
+                <div className="col-md-3"><h4>Description</h4></div>
+                <div className="col-md-6">
                 <textarea
-                  style={{ width: "60%" }}
                   value={selectedProject.Description}
                   onChange={(e) => setSelectedProject((prev) => ({ ...prev, Description: e.target.value }))}
                 />
+                </div>
+
               </div>
-              <div className='mt-5'>
-                <h2>Role</h2>
+              <div className='row mt-1'>
+                <div className="col-md-3">
+                <h4>Role</h4>
+                </div>
+                <div className="col-md-6">
                 <textarea
-                  style={{ width: "60%" }}
                   value={selectedProject.role}
                   onChange={(e) => setSelectedProject((prev) => ({ ...prev, role: e.target.value }))}
                 />
+                </div>
+
+                
+                
               </div>
-              <div className='mt-5'>
-                <h2>Color Combination</h2>
+              <div className='row mt-1'>
+                <div className="col-md-3"><h4>Color Combination</h4></div>
+                <div className="col-md-6">
                 <textarea
-                  style={{ width: "60%" }}
                   value={selectedProject.cardColor}
                   onChange={(e) => setSelectedProject((prev) => ({ ...prev, cardColor: e.target.value }))}
                 />
+                </div>
+
+                
+                
               </div>
-              <div className='mt-2'>
-                <h2>Choose Image</h2>
+              <div className='row mt-1'>
+                <div className="col-md-3"><h4>Choose Image</h4></div>
+                <div className="col-md-6">
                 <img src={selectedProject.image} alt="Selected" width={100} height={100} /> <br />
                 <input
-                  style={{ width: "60%" }}
                   type="file"
                   onChange={handleImageChange}
                 />
+                </div>
+                <div className="col-md-3">
+                <div>
+                <button className='update w-100' onClick={handleUpdate}>Update</button>
               </div>
               <div>
-                <button className='update' style={{ width: "60%" }} onClick={handleUpdate}>Update</button>
+                <button className='delete w-100'  onClick={handleDelete}>Delete</button>
               </div>
               <div>
-                <button className='delete' style={{ width: "60%" }} onClick={handleDelete}>Delete</button>
+              <Link to="/CreateProjects"><button className='update w-100'  >create new Project</button></Link>
+
               </div>
+                </div>
+
+              </div>
+             
             </div>
           )}
         

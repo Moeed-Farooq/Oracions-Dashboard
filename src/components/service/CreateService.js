@@ -119,30 +119,34 @@ const CreateService = () => {
   // ... (rest of the code)
 
   return (
-    <div >
+    <div  className='text-center'>
 
       <div className='mt-5'>
-        <h2>Create New Project</h2>
+        <h1 className='text-center'>Create New Project</h1>
         <div>
           <input
             type="text"
+            className='w-50 mt-5'
             placeholder="serviceTitle"
             value={newProject.serviceTitle}
             onChange={(e) => setNewProject((prev) => ({ ...prev, serviceTitle: e.target.value }))}
           />
         </div>
-        <div className='mt-5'>
+        <div className='mt-3'>
+
           <textarea
+          className='w-50'
             placeholder="Description"
             value={newProject.description}
             onChange={(e) => setNewProject((prev) => ({ ...prev, description: e.target.value }))}
           />
         </div>
         <div className='mt-2'>
-          <h2>Choose Image</h2>
+          <h4>Choose Image</h4>
           <img src={newProject.image} alt="Selected" width={100} height={100} /> <br />
           <input
             type="file"
+            className='w-25'
             onChange={handleImageChange}
           />
         </div>
