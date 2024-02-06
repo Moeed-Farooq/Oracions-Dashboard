@@ -16,24 +16,26 @@ const Message = () => {
   });
   const [currentPage, setCurrentPage] = useState(1);
   const messagesPerPage = 7;
-
   useEffect(() => {
     const fetchData = async () => {
       try {
         const messageCollection = collection(firestore, 'message');
         const querySnapshot = await getDocs(messageCollection);
-
+  
         const messageData = [];
         querySnapshot.forEach((doc) => {
           messageData.push({ id: doc.id, ...doc.data() });
         });
-
-        setMessages(messageData);
+  
+        // Sort messages based on timestamp in descending order
+        const sortedMessages = messageData.sort((a, b) => b.timestamp?.toDate() - a.timestamp?.toDate());
+  
+        setMessages(sortedMessages);
       } catch (error) {
         console.error('Error fetching messages:', error.message);
       }
     };
-
+  
     fetchData();
   }, [firestore]);
 
